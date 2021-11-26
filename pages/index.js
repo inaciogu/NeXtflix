@@ -4,11 +4,9 @@ import { useState, useEffect } from 'react';
 import Header from '../components/header';
 
 export default function Home({ list }) {
-  const [color, setColor] = useState('');
-
   return (
     <div>
-      <Header style={color} />
+      <Header />
         <main className={styles.main}>
           <h2>Filmes em destaque</h2>
             <ul className={styles.movielist}>
