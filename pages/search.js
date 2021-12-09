@@ -1,11 +1,13 @@
 import React from 'react';
+import Head from 'next/head';
+import Aos from 'aos';
+import 'aos/dist/aos.css'
 import styles from '../styles/Home.module.css';
 import Button from '@material-ui/core/Button';
 import { TextField } from '@material-ui/core';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { SearchRounded } from '@material-ui/icons';
 import Header from '../components/header';
-import Image from 'next/image';
 
 export default function Search() {
   const [searchText, setSearchText] = useState('');
@@ -25,9 +27,20 @@ export default function Search() {
       await handleClick();
     }
   }
+
+  useEffect(() => {
+    Aos.init({
+      duration: '1000',
+    });
+  }, [])
   
   return (
       <div>
+        <Head>
+          <title>
+            Buscar
+          </title>
+        </Head>
         <Header />
         <main className={styles.main}>
           <div className={styles.searchbox}>
@@ -46,7 +59,7 @@ export default function Search() {
             </div>
           {<ul className={styles.movielist}>
             {movieList.map(item => (
-                  <li key={item.title} className={styles.moviecard}>
+                  <li data-aos="zoom-in-up" key={item.title} className={styles.moviecard}>
                     <a href={`/movie/${item.id}`}>
                       <img width="200" src={`https://images.tmdb.org/t/p/original${item.poster_path}`} alt={item.title} />
                       <br />

@@ -19,6 +19,9 @@ export default function MovieItem({ info }) {
 
   return (
     <div className={styles.content}>
+      <Head>
+        <title>{info.title}</title>
+      </Head>
       <Header />
       <main className={styles.main}>
         <div className={styles.movieinfo}>
@@ -29,7 +32,7 @@ export default function MovieItem({ info }) {
           <p className={styles.overview}>
             {info.overview}
           </p>
-          <p>Gêneros: {`${info.genres[0].name}, ${info.genres[1].name}`}</p>
+          <p>Gênero: {`${info.genres[0].name}`}</p>
           <p>Data de lançamento: {info.release_date}</p>
           <p>Nota: {info.vote_average}</p>
         </div>

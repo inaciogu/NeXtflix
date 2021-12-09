@@ -1,27 +1,49 @@
 import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
+import Aos from 'aos';
+import 'aos/dist/aos.css'
 import { apiBase, apiKey } from '../lib/tmdb';
 import Header from '../components/header';
 import styles from '../styles/Home.module.css';
 
 export default function Genres({ list }) {
   const [movies, setMovies] = useState([]);
+  const [currentGenre, setCurrentGenre] = useState('Gêneros');
 
   const getMovies = async (id) => {
     const result = await fetch(`${apiBase}/discover/movie?with_genres=${id}&language=pt-BR&api_key=${apiKey}`)
     const json = await result.json();
     setMovies(json.results);
+
+    list.forEach((item) => {
+      if (item.id === id) {
+        setCurrentGenre(item.name)
+      }
+    })
   }
 
   useEffect(() => {
-    console.log(movies)
+    Aos.init({
+      duration: '1000'
+    })
+  }, []);
+
+  useEffect(() => {
+    console.log(currentGenre)
   }, [movies])
+
   return (
     <div>
+      <Head>
+        <title>
+          {currentGenre}
+        </title>
+      </Head>
       <Header />
       <main className={styles.main}>
         <ul className={styles.genrelist}>
             {list.map(item => (
-              <li className={styles.genrecard} key={ item.id }>
+              <li data-aos="flip-right" className={styles.genrecard} key={ item.id }>
                 <p onClick={ () => getMovies(item.id) }>{item.name}</p>
               </li>
             ))}
@@ -29,7 +51,7 @@ export default function Genres({ list }) {
         <div>
         <ul className={styles.movielist}>
               {movies.length > 0 && movies.map(movie => (
-                <li className={styles.moviecard} key={movie.title}>
+                <li data-aos="fade-up" className={styles.moviecard} key={movie.title}>
                     <a href={`/movie/${movie.id}`}>
                       <img width="200" height="300" src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie.title} />
                       <br />
