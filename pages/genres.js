@@ -66,7 +66,7 @@ export default function Genres({ list }) {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const res = await fetch('http://localhost:3000/api/genre')
   const json = await res.json();
   return {
