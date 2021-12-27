@@ -28,10 +28,6 @@ export default function Genres({ list }) {
     })
   }, []);
 
-  useEffect(() => {
-    console.log(currentGenre)
-  }, [movies])
-
   return (
     <div>
       <Head>
