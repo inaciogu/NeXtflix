@@ -14,11 +14,11 @@ export default function Search() {
   const [searchText, setSearchText] = useState('');
   const [movieList, setMovieList] = useState([])
 
-  const handleClick = async () => {
+  async function handleClick() {
     if (searchText !== '') {
-      const result = await fetch(`${apiBase}/search/movie?api_key=${apiKey}&language=pt-BR&query=${searchText}`)
+      const result = await fetch(`${apiBase}/search/movie?api_key=${apiKey}&language=pt-BR&query=${searchText}`);
       const json = await result.json();
-      setMovieList(json.results)
+      setMovieList(json.results);
     }
   }
 
