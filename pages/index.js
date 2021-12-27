@@ -1,5 +1,6 @@
 import styles from '../styles/Home.module.css'
 import Head from 'next/head'
+import { apiBase, apiKey } from '../lib/tmdb';
 import React from 'react';
 import Aos from 'aos';
 import 'aos/dist/aos.css'
@@ -37,11 +38,11 @@ export default function Home({ list }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch('http://localhost:3000/api/trending')
-  const json = await res.json();
+  const result = await fetch(`${apiBase}/trending/movie/week?api_key=${apiKey}&language=pt-BR`)
+  const json = await result.json();
   return {
     props: {
-      list: json.list, 
+      list: json.results, 
     }
   }
 }

@@ -67,11 +67,11 @@ export default function Genres({ list }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch('http://localhost:3000/api/genre')
-  const json = await res.json();
+  const result = await fetch(`${apiBase}/genre/movie/list?api_key=${apiKey}&language=pt-BR`)
+  const json = await result.json();
   return {
     props: {
-      list: json.list,
+      list: json.genres,
     }
   }
 }

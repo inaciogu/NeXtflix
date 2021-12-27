@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import Aos from 'aos';
 import 'aos/dist/aos.css'
+import { apiKey, apiBase } from '../lib/tmdb';
 import styles from '../styles/Home.module.css';
 import Button from '@material-ui/core/Button';
 import { TextField } from '@material-ui/core';
@@ -15,9 +16,9 @@ export default function Search() {
 
   const handleClick = async () => {
     if (searchText !== '') {
-      const result = await fetch(`http://localhost:3000/api/search?q=${searchText}`)
-      const json = await result.json()
-      setMovieList(json.list)
+      const result = await fetch(`${apiBase}/search/movie?api_key=${apiKey}&language=pt-BR&query=${searchText}`)
+      const json = await result.json();
+      setMovieList(json.results)
     }
   }
 

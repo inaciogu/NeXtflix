@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import styles from '../../styles/Home.module.css'
-import Link from 'next/link';
+import { apiBase, apiKey } from '../../lib/tmdb';
 import { useEffect } from 'react';
 import Header from '../../components/header';
 
@@ -43,11 +43,11 @@ export default function MovieItem({ info }) {
 
 export async function getServerSideProps(context) {
   const getId = context.params.id
-  const res = await fetch(`http://localhost:3000/api/movie/${getId}`)
-  const json = await res.json();
+  const result = await fetch(`${apiBase}/movie/${getId}?api_key=${apiKey}&language=pt-BR`)
+  const json = await result.json();
   return {
     props: {
-      info: json.info,
+      info: json,
     }
   }
 }

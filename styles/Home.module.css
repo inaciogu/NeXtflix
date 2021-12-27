@@ -34,17 +34,13 @@
 }
 
 .moviecard:hover {
-  transform: scale(1.15);
+  transform: scale(1.15) !important;
   transition: 0.5s;
 }
 
 .overview {
   display: flex;
   width: 400px;
-}
-
-.arrowback:hover {
-  cursor: pointer;
 }
 
 .header {
@@ -58,24 +54,18 @@
   z-index: 10;
 }
 
-.header h1:hover {
-  cursor: pointer;
-}
-
-.header h4:hover {
-  cursor: pointer;
-}
-
 .header h4 {
   margin-right: 10px;
   margin-left: 10px;
   color: rgb(255, 255, 255);
+  cursor: pointer;
 }
 
 .header h1 {
   margin-right: 20px;
   margin-left: 15px;
   color: rgb(160, 4, 4);
+  cursor: pointer;
 }
 
 .genrelist {
