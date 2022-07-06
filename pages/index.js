@@ -43,6 +43,6 @@ export async function getServerSideProps() {
   return {
     props: {
       list: json.results, 
-    }
+    },
   }
 }

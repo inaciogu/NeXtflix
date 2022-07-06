@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 
-class Header extends React.Component {
-  componentDidMount() {
-    this.handleColor();
-  }
+export default function Header() {
+  useEffect(() => {
+    handleColor();
+  }, [])
 
-  handleColor() {
+  function handleColor() {
     window.addEventListener('scroll', () => {
       const header = document.querySelector('header');
       let windowPos = window.scrollY > 100
@@ -19,9 +19,8 @@ class Header extends React.Component {
     })
   }
 
-  render() {
   return (
-    <header onScroll={ this.handleColor } className={styles.header}>
+    <header onScroll={ handleColor } className={styles.header}>
       <Link href="/" passHref>
         <h1>Nextflix</h1>
       </Link>
@@ -30,6 +29,3 @@ class Header extends React.Component {
       <Link href="/genres" passHref><h4>Gêneros</h4></Link>
     </header>
   )}
-}
-
-export default Header;
